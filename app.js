@@ -1,28 +1,38 @@
-/*eslint-env node*/
-
-//------------------------------------------------------------------------------
-// node.js starter application for Bluemix
-//------------------------------------------------------------------------------
-
-// This application uses express as its web server
-// for more info, see: http://expressjs.com
 var express = require('express');
-
-// cfenv provides access to your Cloud Foundry environment
-// for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
+var dbConnection = require('./config/database');
+var users = require('./routes/users');
 
-// create a new express server
 var app = express();
 
-// serve the files out of ./public as our main files
-app.use(express.static(__dirname + '/public'));
-
-// get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-// start server on the specified port and binding host
+app.use('/users', users);
+
+// app.get('/', function(req, res){
+
+//   console.log('home page');
+// });
+
+// app.get('/addUser', function(req, res){
+
+//     var db = dbConnection.getDb();
+    
+//     var userObj = { name: "Shahwar", email:"syed.shahwar7@gmail.com", password: "123456" };
+    
+//     db.collection("users").insertOne(userObj, function(err, res) {
+//       if (err) throw err;
+//       console.log("1 document inserted");
+//     });
+
+// });
+
+dbConnection.connectToDatabase().then(function(results) {
+
+  console.log('App is connected to Mongodb');
+});
+
 app.listen(appEnv.port, '0.0.0.0', function() {
-  // print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
+  
+  console.log("App is listening on " + appEnv.url);
 });
