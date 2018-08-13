@@ -1,23 +1,16 @@
 {
-  "name": "friendlist",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "dependencies": {
-    "express": "^4.16.3"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shahwar12/friendlist.git"
-  },
-  "author": "Syed Shahwar",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/shahwar12/friendlist/issues"
-  },
-  "homepage": "https://github.com/shahwar12/friendlist#readme"
+	"name": "NodejsStarterApp",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "4.15.x",
+		"cfenv": "1.0.x"
+	},
+	"repository": {},
+	"engines": {
+		"node": "6.x"
+	} 
 }
