@@ -1,12 +1,20 @@
 var express = require('express');
 var cfenv = require('cfenv');
+var bodyParser = require('body-parser');
 var dbConnection = require('./config/database');
+var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
 var appEnv = cfenv.getAppEnv();
 
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use('/', index);
 app.use('/users', users);
 
 // app.get('/', function(req, res){

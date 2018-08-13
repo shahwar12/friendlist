@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script type="text/javascript" src="/lib/jquery.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap.js"></script>
+    
+</head>
+<body>
+    <br>
+    <h3 class='center'><%= heading %></h3><br>
+    <input type='checkbox' id='form-switch'>
+    <form id='login-form'>
+        <input id="login-email" type="email" placeholder="Email" required>
+        <input id="login-password" type="password" placeholder="Password" required>
+        <button type='submit'>Login</button>
+        <label for='form-switch'><span>Register</span></label>
+    </form>
+    <form id='register-form'>
+        <input id="register-name" type="text" placeholder="Name" required>
+        <input id="register-email" type="email" placeholder="Email" required>
+        <input id="register-age" type="number" placeholder="Age" required>
+        <input id="register-city" type="text" placeholder="City" required>
+        <input id="register-password" type="password" placeholder="Password" required>
+        <button type='submit'>Register</button>
+        <label for='form-switch'>Already Member? Sign In.</label>
+    </form>
+
+    <script type='text/javascript'>
+
+        $("#register-form").submit(function(event) {
+    
+            event.preventDefault();
+            var url = 'users/registerUser';
+            var data = {
+                name: $('#register-name').val(),
+                email: $('#register-email').val(),
+                age: $('#register-age').val(),
+                city: $('#register-city').val(),
+                password: $('#register-password').val()
+            };
+            
+            $.post('/users/registerUser', data, function(response){
+                if (response == 'Successfully registered.') 
+                    alert('Successfully registered1.');
+                else
+                    alert(response.message);
+           });
+        });
+    
+        $("#login-form").submit(function(event) {
+    
+            event.preventDefault();
+            var url = 'users/registerUser';
+            var data = {
+                email: $('#login-email').val(),
+                password: $('#login-password').val()
+            };
+            
+            $.post('/users/loginUser', data, function(response){
+                if (response == 'Successfully logged in.') 
+                    alert('Successfully logged in1.');
+                else
+                    alert(response.message);
+            });
+        });
+
+    </script>
+</body>
+</html>
+
+
