@@ -9,9 +9,11 @@
 		"body-parser": "^1.18.3",
 		"cfenv": "1.0.x",
 		"ejs": "^2.6.1",
+		"events": "^3.0.0",
 		"express": "4.15.x",
 		"install": "^0.12.1",
-		"mongodb": "^3.1.1"
+		"mongodb": "^3.1.1",
+		"nodemailer": "^4.6.7"
 	},
 	"repository": {},
 	"engines": {
