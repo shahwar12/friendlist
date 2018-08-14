@@ -65,3 +65,19 @@ header>h6 {
 .user-list{
   height: 50px;
 }
+.view-details-btn,
+.add-friend-btn{
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  padding:2px 5px
+}
+.friend-span{
+  font-size: 12px;
+  color:green;
+}
+.modal-header{
+  display: inline !important;
+}

@@ -6,6 +6,7 @@ var dbConnection = require('./config/database');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var main = require('./routes/main');
+var appUsers = require('./routes/appUsers');
 
 var app = express();
 var appEnv = cfenv.getAppEnv();
@@ -39,12 +40,14 @@ app.use(function(req, res, next) {
     });
 });
 
+app.use('/appUsers', appUsers);      //endpoints with which authorizes using passport and jwt
+
 dbConnection.connectToDatabase().then(function(results) {
 
     console.log('Connected to Mongodb');
     app.listen(appEnv.port, '0.0.0.0', function() {
   
-      console.log("App is listening on " + appEnv.url);
+      console.log("App has been started on " + appEnv.url);
     });
 });
 
