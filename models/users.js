@@ -1,3 +1,4 @@
+var ObjectId = require('mongodb').ObjectID;
 var dbConnection = require('../config/database');
 
 exports.registerUser = function(data){
@@ -46,6 +47,24 @@ exports.loginUser = function(data){
                 else
                     resolve(result);
                 return;
+        });
+        
+    });
+}
+
+
+exports.getUserById = function(userId){
+
+    return new Promise(function(resolve, reject){
+        
+        var db = dbConnection.getDb();
+        db.collection("users").findOne(ObjectId(userId), function(error, result) {
+
+            if (error)
+                reject('failed.');
+            else
+                resolve(result);
+            return;
         });
         
     });

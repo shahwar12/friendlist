@@ -1,4 +1,6 @@
 var events = require('events');
+var jwt = require('jsonwebtoken');
+var auth = require('../config/auth');
 var model = require('../models/users');
 var emailer= require('../config/email.js');
 var eventEmitter = new events.EventEmitter();
@@ -33,10 +35,30 @@ exports.loginUser = function(data, res){
     model.loginUser(data)
     .then(function(result){
         
-        if (result)
-            res.send({status: true, message: "Successfully logged in.", data: result});
-        else
+        if (result){
+
+            var data = {};
+            var jwtInput = {
+                Id: result._id
+            };
+
+            var token = jwt.sign(jwtInput, auth.secret, {
+                expiresIn: auth.tokenExpireTime 
+            });
+
+            data.name = result.name;
+            data.email = result.email;
+            data.age = result.age;
+            data.city = result.city;
+            data.token = 'JWT ' + token;
+            data.tokenExpireTime = auth.tokenExpireTime;
+
+            res.send({status: true, message: "Successfully logged in.", data: data});
+        }
+        else {
+
             res.send({status: true, message: "Invalid email or password.", data: null});
+        }
     })
     .catch(function(error) {
         

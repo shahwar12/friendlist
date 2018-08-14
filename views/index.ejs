@@ -42,10 +42,16 @@
             };
             
             $.post('/users/registerUser', data, function(response){
-                if (response == 'Successfully registered.') 
-                    alert('Successfully registered1.');
-                else
+
+                if (response.message == 'Successfully registered.'){
+
+                    alert('Successfully registered. Please Login to use the application');
+                    location.reload();
+                }
+                else {
+
                     alert(response.message);
+                }
            });
         });
     
@@ -59,10 +65,25 @@
             };
             
             $.post('/users/loginUser', data, function(response){
-                if (response == 'Successfully logged in.') 
-                    alert('Successfully logged in1.');
-                else
+
+                if (response.message == 'Successfully logged in.'){
+
+                    localStorage.setItem("userData", JSON.stringify(response.data));
+                    // $.ajaxSetup({
+                    //     headers: {
+                    //         'Authorization': JSON.parse(localStorage.getItem("userData")).token,
+                    //     }
+                    // });
+
+                    $.get('/test', data, function(response){
+                        console.log(response);
+                    });
+                    
+                } 
+                else {
+
                     alert(response.message);
+                }        
             });
         });
 
