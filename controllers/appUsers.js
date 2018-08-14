@@ -6,7 +6,7 @@ exports.getAllUsers = function(userId, res){
     model.getAllUsers(userId)
     .then(function(results){
         
-        if (results){
+        if (results.length >= 1){
 
             data = results;
             return model.getAllFriendsIds(userId);
@@ -55,7 +55,7 @@ exports.getAllFriends = function(userId, res){
     model.getAllFriendsIds(userId)
     .then(function(results){
         
-        if (results.length >= 1){
+        if (results[0].friends.length >= 1){
             
             return model.getAllFriends(results[0].friends);
         }

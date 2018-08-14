@@ -6,13 +6,20 @@ input {
   margin-bottom:3px;
   padding:10px;
   width: 100%;
-  border:1px solid #CCC
+  border:1px solid #CCC;
 }
-button {
-  padding:10px
+form>button {
+  padding: 5px 20px;
+  border:1px solid #CCC;
+  background-color: #ccc;
+  cursor: pointer;
 }
 label {
-  cursor:pointer
+  cursor:pointer;
+}
+.switch-option {
+  text-decoration: underline;
+  color: #778899;
 }
 #form-switch {
   display:none
@@ -76,7 +83,7 @@ header>h6 {
 }
 .friend-span{
   font-size: 12px;
-  color:green;
+  color:#008000;
 }
 .modal-header{
   display: inline !important;
