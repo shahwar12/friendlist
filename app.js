@@ -5,6 +5,7 @@ var passport = require('passport');
 var dbConnection = require('./config/database');
 var index = require('./routes/index');
 var users = require('./routes/users');
+var main = require('./routes/main');
 
 var app = express();
 var appEnv = cfenv.getAppEnv();
@@ -20,6 +21,7 @@ require('./controllers/passport')(passport);
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/main', main);
 
 app.use(function(req, res, next) {
 
@@ -31,23 +33,19 @@ app.use(function(req, res, next) {
             return;
         }
         else {
-          
+
             next();
         }
     });
 });
 
-app.get('/test', function(req, res){
-
-    res.send('test page');
-});
-
 dbConnection.connectToDatabase().then(function(results) {
 
-    console.log('App is connected to Mongodb');
+    console.log('Connected to Mongodb');
+    app.listen(appEnv.port, '0.0.0.0', function() {
+  
+      console.log("App is listening on " + appEnv.url);
+    });
 });
 
-app.listen(appEnv.port, '0.0.0.0', function() {
-  
-    console.log("App is listening on " + appEnv.url);
-});
+

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>My Friend List</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <script type="text/javascript" src="/lib/jquery.js"></script>
@@ -27,67 +28,7 @@
         <label for='form-switch'>Already Member? Sign In.</label>
     </form>
 
-    <script type='text/javascript'>
-
-        $("#register-form").submit(function(event) {
-    
-            event.preventDefault();
-            var url = 'users/registerUser';
-            var data = {
-                name: $('#register-name').val(),
-                email: $('#register-email').val(),
-                age: $('#register-age').val(),
-                city: $('#register-city').val(),
-                password: $('#register-password').val()
-            };
-            
-            $.post('/users/registerUser', data, function(response){
-
-                if (response.message == 'Successfully registered.'){
-
-                    alert('Successfully registered. Please Login to use the application');
-                    location.reload();
-                }
-                else {
-
-                    alert(response.message);
-                }
-           });
-        });
-    
-        $("#login-form").submit(function(event) {
-    
-            event.preventDefault();
-            var url = 'users/registerUser';
-            var data = {
-                email: $('#login-email').val(),
-                password: $('#login-password').val()
-            };
-            
-            $.post('/users/loginUser', data, function(response){
-
-                if (response.message == 'Successfully logged in.'){
-
-                    localStorage.setItem("userData", JSON.stringify(response.data));
-                    // $.ajaxSetup({
-                    //     headers: {
-                    //         'Authorization': JSON.parse(localStorage.getItem("userData")).token,
-                    //     }
-                    // });
-
-                    $.get('/test', data, function(response){
-                        console.log(response);
-                    });
-                    
-                } 
-                else {
-
-                    alert(response.message);
-                }        
-            });
-        });
-
-    </script>
+    <script type='text/javascript' src="/lib/index.js"></script>
 </body>
 </html>
 

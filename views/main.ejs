@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Friend List</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script type="text/javascript" src="/lib/jquery.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap.js"></script>
+    
+</head>
+<body  onload="checkLogin()">
+    <header>
+        <h5 onclick="main()">My Friend List</h5>
+        <h6 onclick="logout()">Logout</h6>
+    </header>
+    <br>
+    <main>
+        <h4>Welcome <span class="user-name"></span>!</h4><br><br>
+        <h6>Your Profile:</h6>
+        <p>Name: <span class="user-name"></span></p>
+        <p>Email: <span id="user-email"></span></p>
+        <p>Age: <span id="user-age"></span> &nbsp&nbsp&nbsp&nbsp&nbspCity: <span id="user-city"></span></p>
+        
+        <br><br>
+        <button type="button" class="block" onclick="getAllUsers()">All Users</button>
+        <button type="button" class="block" onclick="getAllFriends()">Friends</button>
+        
+    </main>
+    
+    <script type='text/javascript' src="/lib/main.js"></script>
+</body>
+</html>
+
+

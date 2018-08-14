@@ -18,7 +18,8 @@ module.exports = function(passport) {
             if (result){
                 
                 var user = {
-                    Id: jwt_payload.Id
+                    Id: jwt_payload.Id,
+                    Name: result.name
                 };
                 done(null, user);   
             }
